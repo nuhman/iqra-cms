@@ -16,6 +16,6 @@ Entry Point : **index.php**
  * Manage Pages
 
 
-**Note**: The images used are taken from internet, and thus the copyrights are held by the respective owners. Take care of it before you may use it in production.  
+**Note**: The [images](static/includes/images) used are taken from internet, and thus the copyrights are held by the respective owners. Take care of it before you may use it in production.  
 
-**Note**: The database setup can be found here : iqra-cms/static/includes/dbsetup.php . Update the values to match your environment.
+**Note**: The database setup can be found [here](static/includes/dbsetup.php). Update the values to match your environment.
