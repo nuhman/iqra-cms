@@ -25,6 +25,7 @@
 			</a>
 		  <ul class="right hide-on-med-and-down">
 		  <?php if($layout_context === 'public'){ ?>
+			<li><a href="signup.php">Sign Up</a></li>
 			<li><a href="login.php">Log In</a></li>
 			<li><a href="display_all.php">Read</li>
 		  <?php } 
