@@ -17,8 +17,8 @@
 </footer>
 
 <!--  Scripts-->
-  <script src="static/scripts/jquery-2.2.3.js"></script>
-  <script src="static/scripts/materialize.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
   <script src="static/scripts/init.js"></script>
 
 </body>
