@@ -39,18 +39,22 @@ include "static/includes/layouts/open.php";
 
 <script>
   function validateForm(){
-      var fields = ["username_","password_"]
+      var fields = ["username_","new_password_","confirm_password_"];
       var flag=0;
       document.getElementById("error1").innerHTML = "";
       document.getElementById("error2").innerHTML = "";
-      if (document.forms["login"][fields[0]].value === "") {
+      if (document.forms["signup"][fields[0]].value === "") {
           document.getElementById("error1").innerHTML = "username can't be blank";
           flag=1;
       }
-      if (document.forms["login"][fields[1]].value === "") {
+      if (document.forms["signup"][fields[1]].value === "") {
           document.getElementById("error2").innerHTML = "password can't be blank";
           flag=1;
       }
+	  if(document.forms["signup"][fields[1]].value !== document.forms["signup"][fields[2]].value){
+		  document.getElementById("error2").innerHTML = "password don't match!";
+          flag=1;
+	  }
       if(flag === 1){
         return false;
       }
