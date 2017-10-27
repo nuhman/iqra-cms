@@ -15,7 +15,7 @@ require_once("static/includes/dbsetup.php");
   }
 
 
-  $query = "DELETE FROM pages WHERE id = ".$page_id." LIMIT 1";
+  $query = "DELETE FROM pages WHERE ID = ".$page_id." LIMIT 1";
   $result = mysqli_query($conn,$query);
   if($result && mysqli_affected_rows($conn) == 1){
     $_SESSION["message"] = "Page deleted!";

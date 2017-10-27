@@ -14,7 +14,7 @@ if (isset($_GET["subject"])){
     redirect_to("index.php");
   }
 	$selected_subject_id = mysqli_real_escape_string($conn,$selected_subject_id);
-  $query = "SELECT * FROM subjects WHERE id = {$selected_subject_id} LIMIT 1";
+  $query = "SELECT * FROM subjects WHERE ID = {$selected_subject_id} LIMIT 1";
   $result = mysqli_query($conn,$query);
   if( (!$result) || mysqli_num_rows($result) < 1){
       redirect_to("index.php");
@@ -27,7 +27,7 @@ elseif (isset($_GET["page"])){
     redirect_to("index.php");
   }
 	$selected_page_id = mysqli_real_escape_string($conn,$selected_page_id);
-  $query = "SELECT * FROM pages WHERE id = {$selected_page_id} LIMIT 1";
+  $query = "SELECT * FROM pages WHERE ID = {$selected_page_id} LIMIT 1";
   $result = mysqli_query($conn,$query);
   if( (!$result) || mysqli_num_rows($result) < 1){
       redirect_to("index.php");
@@ -47,8 +47,8 @@ else{
   <?php
 		include "static/includes/public_navigation.php";
 		echo message();
-		display_page_public();		
-		
+		display_page_public();
+
 	?>
   </div>
 

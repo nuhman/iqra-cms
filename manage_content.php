@@ -3,14 +3,13 @@ require_once("static/includes/sessions.php");
 require_once("static/includes/functions.php");
 if(!isset($_SESSION["username"])){
 	redirect_to('index.php');
-}
-else{
+} else{
 	$usrnm = $_SESSION["username"];
 }
 require_once("static/includes/dbsetup.php");
 include "static/includes/layouts/open.php";
 
-if (isset($_GET["subject"])){
+if (isset($_GET["subject"])){ // is user requesting for a subject ?
 	$selected_subject_id = $_GET["subject"];
 	if(!is_numeric($selected_subject_id)){
     redirect_to("manage_content.php");
@@ -32,7 +31,7 @@ elseif (isset($_GET["page"])){
   $query = "SELECT * FROM pages WHERE id = {$selected_page_id} LIMIT 1";
   $result = mysqli_query($conn,$query);
   if( (!$result) || mysqli_num_rows($result) < 1){
-      redirect_to("amanage_content.php");
+      redirect_to("manage_content.php");
   }
 	$selected_subject_id = null;
 }
@@ -43,15 +42,14 @@ else{
 
 ?>
 
-<div class="main">		
+<div class="main">
 	<?php include "static/includes/layouts/manage_menu.php"; ?>
 	<div class="page teal lighten-5">
 				<?php
-					echo message();
+					// echo message();
 					display_page();
-					
-				 ?>	
-	</div>	 
+				 ?>
+	</div>
 </div>
 
 
@@ -66,12 +64,10 @@ function checkboxValidation(){
 			return false;
 		else
 			return true;
-	}			
+	}
 	else{
 		alert('Please select a page');
 		return false;
 	}
-		
 }
-
 </script>

@@ -12,14 +12,7 @@ require_once("static/includes/dbsetup.php");
   if(!$admin_id){
     redirect_to("manage_admins.php");
   }
-
-
   $query = "DELETE FROM admins WHERE id = ".$admin_id." LIMIT 1";
-  $result = mysqli_query($conn,$query);
-  //if($result && mysqli_affected_rows($conn) == 1){
-    redirect_to("manage_admins.php");
-  //}
-  //else{
-    //redirect_to("manage_admins.php");
-  //}
+  $result = mysqli_query($conn,$query);  
+  redirect_to("manage_admins.php");
 ?>

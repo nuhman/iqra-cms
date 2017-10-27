@@ -16,8 +16,8 @@ if(isset($_POST['submit'])){
   validate_max_lengths($fields_with_max_lengths);
 
   if (empty($errors)){
-    $id = $_SESSION["id"];
-    $sid = $_POST["id"];
+    $id = $_SESSION["ID"];
+    $sid = $_POST["ID"];
     $menu_name = $_POST["menu_name"];
     $position = (int) $_POST["position"];
     $visible = (int) $_POST["visible"];
@@ -32,11 +32,11 @@ if(isset($_POST['submit'])){
     }
     else{
       $_SESSION["message"] = "Page Creation Failed!";
-      redirect_to("create_page.php?subject=".urlencode($_POST['id']));
+      redirect_to("create_page.php?subject=".urlencode($_POST["ID"]));
     }
   }
   else{
-    redirect_to("create_page.php?subject=".urlencode($_POST['id']));
+    redirect_to("create_page.php?subject=".urlencode($_POST["ID"]));
   }
 }
 

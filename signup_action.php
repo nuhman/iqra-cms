@@ -6,24 +6,20 @@ if(isset($_POST["submit"])){
    $username1 = mysqli_real_escape_string($conn,$_POST["username_"]);
    $password = mysqli_real_escape_string($conn,$_POST["new_password_"]);
    //$confirm_password = mysqli_real_escape_string($conn,$_POST["confirm_password_"]);
-   $password = sha1($password);
+   $password = sha1($password); //ENCRYPTION
    $query_check = "SELECT * FROM admins WHERE username = '".$username1."'";
    $temp = mysqli_query($conn,$query_check);
-   //echo(mysqli_num_rows($result));
    if(mysqli_num_rows($temp) != 0){
      redirect_to('signup.php');
-   }
+   } // TESTED - OK
    $query = "INSERT INTO admins (username,password) VALUES ('{$username1}','{$password}')";
    $result = mysqli_query($conn,$query);
    if($result){
       redirect_to('login.php');
-   }
-   else{
+   } else{
      redirect_to('signup.php');
    }
-
-}
-else{
+} else{
 	redirect_to('signup.php');
 }
 

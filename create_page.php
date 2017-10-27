@@ -17,13 +17,13 @@ if(isset($_GET["subject"])){
     redirect_to("manage_content.php");
   }
   $selected_subject_id = mysqli_real_escape_string($conn,$selected_subject_id);
-  $query = "SELECT * FROM subjects WHERE id = {$selected_subject_id} LIMIT 1";
+  $query = "SELECT * FROM subjects WHERE ID = {$selected_subject_id} LIMIT 1";
   $result = mysqli_query($conn,$query);
   if( (!$result) || mysqli_num_rows($result) < 1){
       redirect_to("manage_content.php");
   }
   $a = mysqli_fetch_assoc($result);
-  $_SESSION["id"] = $a["id"];
+  $_SESSION["ID"] = $a["ID"];
 }
 else{
 	redirect_to("manage_content.php");
@@ -32,18 +32,18 @@ else{
 ?>
 
 
-<div class="main">	
+<div class="main">
 <p> Create Page for <?php echo $a["menu_name"]; ?></p>
 	<div class="page row  teal lighten-5">
           <?php
-            echo message();						
-          ?>		
+            echo message();
+          ?>
           <form action="create_page_action.php" method="post">
-		    <div class="col s4">            
+		    <div class="col s4">
 				<div class="input-field">
-					<input type="text" name="menu_name" placeholder="eg. health" class="validate"/>			
+					<input type="text" name="menu_name" placeholder="eg. health" class="validate"/>
 					<label for="menu_name">Page Name</label>
-				</div>            
+				</div>
 				<div>
 					<label>Position</label>
 					<select name="position" class="browser-default">
@@ -65,17 +65,17 @@ else{
 					<input name="visible" type="radio" id="test2" value="0">
 					<label for="test2">No</label>
 				</div><br>
-				<div class="input-field">				
+				<div class="input-field">
 					<textarea id="content" class="materialize-textarea" name="content"></textarea>
 					<label for="content">Content</label>
 				</div>
 				<br><br>
-			 
 
-              <input type="hidden" name="id" value="<?php echo $a["id"]; ?>">
+
+              <input type="hidden" name="ID" value="<?php echo $a["ID"]; ?>">
               <button class="btn" type="submit" name="submit">Create Page</button>
 			  </div>
-			</form><br>         
+			</form><br>
 
 	</div>
 	 <a href="manage_content.php">Cancel and Go back</a>

@@ -54,7 +54,7 @@ if(isset($_GET["page"])){
       redirect_to("manage_content.php");
   }
   $a = mysqli_fetch_assoc($result);
-  $_SESSION["id"] = $a["id"];
+  $_SESSION["ID"] = $a["ID"];
 
 }
 else{
@@ -66,24 +66,24 @@ else{
 include "static/includes/layouts/open.php";
 ?>
 
-<div class="main">	
+<div class="main">
 <p> Edit Page <?php echo htmlentities($a["menu_item"]); ?> </p>
-	<div class="page row  teal lighten-5">                            
+	<div class="page row  teal lighten-5">
           <?php
             if(!empty($message)){
               echo "<div class='message'>".htmlentities($message)."</div>";
-            }				
-          ?>					
-                  
+            }
+          ?>
 
-        <form action="edit_page.php?page=<?php echo urlencode($a["id"])?>" method="post">
+
+        <form action="edit_page.php?page=<?php echo urlencode($a["ID"])?>" method="post">
 		<div class="col s4">
 			<div class="input-field">
 				<input type="text" name="menu_name" value="<?php echo htmlentities($a["menu_item"]);?>" />
 				<label for="menu_name">Subject Name </label>
 			</div>
           <div>
-			<p>Position: 
+			<p>Position:
               <select name="position" class="browser-default">
                 <?php
                   $subject = find_subject_by_id($a["subject_id"]);
@@ -107,17 +107,17 @@ include "static/includes/layouts/open.php";
 			<label for="test2">Yes</label>
 			</p>
           </div><br><br>
-          <div class="input-field">			
+          <div class="input-field">
             <textarea id="content" class="materialize-textarea" name="content" ><?php echo htmlentities($a['content']);?> </textarea>
 			<label for="content">Content</label>
 		  </div><br><br>
            <button type="submit" name="submit" class="btn">Confirm Edit</button>
 		   </div>
-        </form>        
+        </form>
 	</div>
 	<a href="manage_content.php">Cancel and go back</a>
         &nbsp; &nbsp;
-        <a href="delete_page.php?page=<?php echo urlencode($a['id'])?>" onclick="return confirm('Are you Sure?'); "> Delete this Page</a>
+        <a href="delete_page.php?page=<?php echo urlencode($a["ID"])?>" onclick="return confirm('Are you Sure?'); "> Delete this Page</a>
 
 </div>
 

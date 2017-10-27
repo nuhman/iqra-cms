@@ -19,13 +19,13 @@ if(isset($_POST['submit'])){
 
   if (empty($errors)){
 
-    $id = $_SESSION["id"];
+    $id = $_SESSION["ID"];
     $menu_name = $_POST["menu_name"];
     $position = (int) $_POST["position"];
     $visible = (int) $_POST["visible"];
     $menu_name = mysqli_real_escape_string($conn,$menu_name);
     //UPDATE subjects SET menu_name = 'rashtreeyam',position = 1,visible = 1 WHERE id = 1;
-    $query = "UPDATE subjects SET menu_name = '".$menu_name."', position = ".$position.", visible = ".$visible." WHERE id = ".$id." LIMIT 1";
+    $query = "UPDATE subjects SET menu_name = '".$menu_name."', position = ".$position.", visible = ".$visible." WHERE ID = ".$id." LIMIT 1";
     $result = mysqli_query($conn,$query);
     if($result && mysqli_affected_rows($conn) >= 0){
       $_SESSION["message"] = "Subject Updated!";
@@ -54,13 +54,13 @@ if(isset($_GET["subject"])){
     redirect_to("manage_content.php");
   }
   $selected_subject_id = mysqli_real_escape_string($conn,$selected_subject_id);
-  $query = "SELECT * FROM subjects WHERE id = {$selected_subject_id} LIMIT 1";
+  $query = "SELECT * FROM subjects WHERE ID = {$selected_subject_id} LIMIT 1";
   $result = mysqli_query($conn,$query);
   if( (!$result) || mysqli_num_rows($result) < 1){
       redirect_to("manage_content.php");
   }
   $a = mysqli_fetch_assoc($result);
-  $_SESSION["id"] = $a["id"];
+  $_SESSION["ID"] = $a["ID"];
 
 }
 else{
@@ -74,17 +74,17 @@ include "static/includes/layouts/open.php";
 
 <div class="main">
 <p> Edit Subject</p>
-	
-	<div class="page row  teal lighten-5">                            
 
-        <form action="edit_subject.php?subject=<?php echo urlencode($a["id"])?>" method="post">
+	<div class="page row  teal lighten-5">
+
+        <form action="edit_subject.php?subject=<?php echo urlencode($a["ID"])?>" method="post">
 		<div class="col s4">
 			<div class="input-field">
 				<input type="text" name="menu_name" value="<?php echo htmlentities($a["menu_name"]);?>" />
 				<label for="menu_name">Subject Name</label>
 			</div>
           <div>
-			<p>Position: 
+			<p>Position:
               <select name="position" class="browser-default">
                 <?php
                   $subject_set = get_all_subjects();
@@ -111,12 +111,12 @@ include "static/includes/layouts/open.php";
 			<button class="btn waves-effect waves-light" type="submit" name="submit">Confirm Edit</button>
 			</div>
 		</div>
-        </form>        
+        </form>
 
 	</div>
 	<a href="manage_content.php">Cancel and go back</a>
         &nbsp; &nbsp;
-<a href="delete_subject.php?subject=<?php echo urlencode($a['id'])?>" onclick="return confirm('Are you Sure?'); "> Delete this Subject</a>	
+<a href="delete_subject.php?subject=<?php echo urlencode($a["ID"])?>" onclick="return confirm('Are you Sure?'); "> Delete this Subject</a>
 </div>
 
 

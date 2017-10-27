@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 $layout_context = 'public';
 require_once("static/includes/sessions.php");
 require_once("static/includes/functions.php");
@@ -20,7 +22,7 @@ if (isset($_GET["subject"])){
       redirect_to("index.php");
   }
 	$selected_page_id = null;
-}
+} // TESTED - OK
 elseif (isset($_GET["page"])){
 	$selected_page_id = $_GET["page"];
 	if(!is_numeric($selected_page_id)){
@@ -37,35 +39,7 @@ elseif (isset($_GET["page"])){
 else{
 	$selected_page_id = null;
 	$selected_subject_id = null;
-}
-/*
-?>
-
-<div class="main">
-	<div class="navigation">
-		<?php include "static/includes/public_navigation.php"; ?>
-
-	</div>
-	<div class="page">
-				<?php
-					echo message();
-					display_page_public();
-				 ?>
-				 <div>
-					 <?php
-					 	if(isset($access)){
- 								echo "Welcome to Iqra, <a href='admin.php'>".htmlentities($_SESSION["username"])."</a>";
- 						}
-						else{
-							echo "<a href='login.php'>Login to access admin area</a>";
-						}
-					 ?>
-				 </div>
-	</div>
-
-</div>
-
-*/
+} 
 ?>
 
 <div id="index-banner" class="parallax-container">
@@ -77,7 +51,7 @@ else{
           <h5 class="header col s12 white-text darken-2">There comes a time when you have to choose between turning the page and closing the book</h5>
         </div>
         <div class="row center">
-          <a href="display_all.php" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Open the book</a>		  
+          <a href="display_all.php" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Open the book</a>
         </div>
         <br><br>
 
@@ -100,7 +74,7 @@ else{
             <p class="light">How many times have you felt overwhelmed by the plethora of information out there?! Well, too many times apparently.
 			We offer you one thing and that's simplicity. Here you will not find any things that distract you from the stuff
 			that you really care about.
-			
+
 			</p>
           </div>
         </div>
@@ -110,7 +84,7 @@ else{
             <h2 class="center brown-text"><i class="material-icons">group</i></h2>
             <h5 class="center">User Focused</h5>
 
-            <p class="light">We don't put you on a hook and hope that you sit in front of the computer screen or stare at your mobile 
+            <p class="light">We don't put you on a hook and hope that you sit in front of the computer screen or stare at your mobile
 			phones for the whole day. We want you to be content, and urges you to give some time to yourself, even if that means less engagement for
 			us. That's the user experience we're talking about.
 			</p>

@@ -1,6 +1,10 @@
 <ul class="subjects">
   <?php
     $nav_context = " ";
+    if(isset($_SESSION["username"])){
+    	$layout_context = "admin";
+    }
+    echo $layout_context;
     if($layout_context === 'public'){
       $nav_context = "hide";
     }
@@ -14,11 +18,11 @@
   ?>
     <li>
     <?php if($nav_context == "hide"){ ?>
-    <a href="display_all.php?subject=<?php echo urlencode($subject['id'])?>" class="black-text">
+    <a href="display_all.php?subject=<?php echo urlencode($subject["ID"])?>" class="black-text">
     <?php
     }
     else{ ?>
-      <a href="manage_content.php?subject=<?php echo urlencode($subject['id'])?>" class="black-text">
+      <a href="manage_content.php?subject=<?php echo urlencode($subject["ID"])?>" class="black-text">
     <?php } ?>
 
       <?php
@@ -33,19 +37,19 @@
           ?>
           <li
           <?php
-            if($pages["id"] == $selected_page_id){
+            if($pages["ID"] == $selected_page_id){
                 echo " class='selected pageselected' ";
             }
           ?> >
           <?php if($nav_context == "hide"){ ?>
-              <a href = "display_all.php?page=<?php echo urlencode($pages['id']) ?>" class="gray-text">
+              <a href = "display_all.php?page=<?php echo urlencode($pages["ID"]) ?>" class="gray-text">
           <?php
             }
             else{ ?>
-              <a href = "manage_content.php?page=<?php echo urlencode($pages['id']) ?>" class="gray-text">
+              <a href = "manage_content.php?page=<?php echo urlencode($pages["ID"]) ?>" class="gray-text">
           <?php } ?>
           <?php echo $pages["menu_item"]; ?></a>
-          </li>		  
+          </li>
           <?php
             }
             mysqli_free_result($result_1);

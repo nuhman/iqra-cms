@@ -1,8 +1,11 @@
 <?php
+  global $layout_context;
+  if( !(isset($layout_context)) || ($layout_context==null) ){
+    $layout_context = 'public';
+  }
   if($layout_context === 'public'){
     $nav_context = "hide";
-  }
-  else{
+  } else{
     $layout_context = 'admin';
     $nav_context = "show";
   }
@@ -21,25 +24,23 @@
 
   function get_all_subjects(){
     global $conn,$layout_context,$nav_context;
-    if($nav_context === "hide"){
+    if($nav_context === "hide"){ // it's general public - so hide subjects that are NOT visible
       $query = "SELECT * FROM subjects WHERE visible = 1 ORDER BY position ASC";
-    }
-    else{
+    } else{
       $query = "SELECT * FROM subjects  ORDER BY position ASC";
     }
-    $result = mysqli_query($conn,$query);
+    $result = mysqli_query($conn,$query);    
     confirm_query($result);
     return $result;
   }
 
   function get_all_pages_for_sub($subject){
     global $conn,$layout_context,$nav_context;
-    $subject_ = $subject['id'];
+    $subject_ = $subject["ID"];
     $subject_ = mysqli_real_escape_string($conn,$subject_);
     if($nav_context == "hide"){
       $query = "SELECT * FROM pages WHERE subject_id = $subject_ AND visible = 1 ORDER BY position ASC";
-    }
-    else{
+    } else{
       $query = "SELECT * FROM pages WHERE subject_id = $subject_ ORDER BY position ASC";
     }
     $result_1 = mysqli_query($conn,$query);
@@ -53,7 +54,7 @@
   function get_content($page_id){
     global $conn;
     $page_id = mysqli_real_escape_string($conn,$page_id);
-    $query = "SELECT * FROM pages WHERE id = $page_id";
+    $query = "SELECT * FROM pages WHERE ID = $page_id";
     $result = mysqli_query($conn,$query);
     confirm_query($result);
     return $result;
@@ -62,16 +63,14 @@
   function find_subject_by_id($subject_id){
     global $conn;
     $subject_id = mysqli_real_escape_string($conn,$subject_id);
-    $query = "SELECT * FROM subjects WHERE id = {$subject_id} LIMIT 1";
+    $query = "SELECT * FROM subjects WHERE ID = {$subject_id} LIMIT 1";
     $result = mysqli_query($conn,$query);
     confirm_query($result);
     if($subject = mysqli_fetch_assoc($result)){
         return $subject;
-    }
-    else{
+    } else{
       return null;
     }
-
   }
 
   //get all the contents - uses get_content & find_subject_by_id methods
@@ -91,12 +90,12 @@
       echo "<br>";
       $pages_for_this_sub = get_all_pages_for_sub($current_sub);
       if(mysqli_num_rows($pages_for_this_sub) > 0){
-        echo "<hr>Page(s) under this subject: ";        
+        echo "<hr>Page(s) under this subject: ";
 		echo "<form method='get' action='delete_pages_multiple.php' onsubmit='return checkboxValidation();' >";
         while($pg = mysqli_fetch_assoc($pages_for_this_sub)){
-		echo "<p><input type='checkbox' class='checks' id='".$pg['id']."' name='pagelist[]' value='".$pg['id']."'>";
-		echo "<label for='".$pg['id']."'><strong><a href='manage_content.php?page=".$pg['id']."'>".$pg['menu_item']."</a></strong></label>";
-        echo "</p>";				
+		echo "<p><input type='checkbox' class='checks' id='".$pg["ID"]."' name='pagelist[]' value='".$pg["ID"]."'>";
+		echo "<label for='".$pg["ID"]."'><strong><a href='manage_content.php?page=".$pg["ID"]."'>".$pg['menu_item']."</a></strong></label>";
+        echo "</p>";
 		}
 		echo "<button type='submit' class='btn'><i class='material-icons white-text'>delete</i></button>";
 		//echo "<p><a href='delete_pages_multiple.php?subject=".urlencode(pagelist)."[]' class='btn'></a></p>";
@@ -144,7 +143,7 @@
       echo   '<ul class="pages">';
       while($pages = mysqli_fetch_assoc($result_1)){
       echo '<li>';
-      echo '<a href = "display_all.php?page='.urlencode($pages['id']).'">';
+      echo '<a href = "display_all.php?page='.urlencode($pages["ID"]).'">';
       echo htmlentities($pages["menu_item"]).'</a></li>';
       //mysqli_free_result($result_1);
 

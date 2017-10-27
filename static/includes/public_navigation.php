@@ -1,5 +1,5 @@
 <ul class="collapsible"  data-collapsible="accordion">
-  
+
   <?php
     $nav_context = "hide";
     $layout_context === 'public';
@@ -11,13 +11,13 @@
   ?>
   <li>
   <div class="collapsible-header"><a href="#"><?php echo htmlentities($subject["menu_name"]); ?> </a>	</div>
-  <?php 
+  <?php
 	while($pag = mysqli_fetch_assoc($result_1)){
   ?>
 		<div class="collapsible-body"><p>
-		<?php 
-		echo '<a href = "display_all.php?page='.urlencode($pag['id']).'" class="deep-orange-text">'; 
-		echo htmlentities($pag["menu_item"]).'</a>';	
+		<?php
+		echo '<a href = "display_all.php?page='.urlencode($pag["ID"]).'" class="deep-orange-text">'; 
+		echo htmlentities($pag["menu_item"]).'</a>';
   ?>
   </p>
   </div>
@@ -28,4 +28,3 @@
     mysqli_free_result($result);
     ?>
 </ul>
-

@@ -1,6 +1,6 @@
-<?php
-session_start();
+<?php session_start(); ?>
 
+<?php
 function message(){
   if(isset($_SESSION["message"])){
     $html = "<div class='message red-text'>".htmlentities($_SESSION["message"])."</div>";

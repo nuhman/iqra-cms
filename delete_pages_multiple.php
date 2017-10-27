@@ -8,14 +8,14 @@ require_once("static/includes/dbsetup.php");
 ?>
 
 <?php
-  
+
   $page_ids = $_GET["pagelist"];
   if(!$page_ids){
     redirect_to("manage_content.php");
-  }    
-	$sql = "DELETE FROM pages WHERE id in ";
+  }
+	$sql = "DELETE FROM pages WHERE ID in ";
 	$sql.= "('".implode("','",array_values($page_ids))."')";
-	
+
 	$result = mysqli_query($conn,$sql);
 	if($result && mysqli_affected_rows($conn) == 1){
 		$_SESSION["message"] = "Page deleted!";
@@ -25,6 +25,6 @@ require_once("static/includes/dbsetup.php");
 		$_SESSION["message"] = "Page deletion failed!";
 		redirect_to('manage_content.php');
 	}
-  
-     
+
+
 ?>

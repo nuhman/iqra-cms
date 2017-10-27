@@ -19,3 +19,8 @@ Entry Point : **index.php**
 **Note**: The [images](static/includes/images) used are taken from internet, and thus the copyrights are held by the respective owners. Take care of it before you may use it in production.  
 
 **Note**: The database setup can be found [here](static/includes/dbsetup.php). Update the values to match your environment.
+
+**Bugs/ Issues**:
+* Add duplicate value check for usernames - edit_admin.php Line 20
+* No RESPECT for position - two subjects can have same position - the other doesn't readjust itself!
+* Take care of the navigation bar when user is logged in/out
